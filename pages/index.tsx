@@ -6,8 +6,17 @@ import Header from '@/components/Header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function Dashboard() {
-  const [calls, setCalls] = useState([]);
-  const [filteredCalls, setFilteredCalls] = useState([]);
+  type Call = {
+    id: string;
+    from_number: string;
+    duration_seconds: number;
+    timestamp: string;
+    transcript_url: string;
+    audio_url: string;
+  };
+  
+  const [calls, setCalls] = useState<Call[]>([]);
+  const [filteredCalls, setFilteredCalls] = useState<Call[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [totalCalls, setTotalCalls] = useState(0);
   const [totalDuration, setTotalDuration] = useState('0m');
@@ -29,7 +38,10 @@ export default function Dashboard() {
         setFilteredCalls(data);
         setTotalCalls(data.length);
 
-        const durationInSeconds = data.reduce((sum, call) => sum + call.duration_seconds, 0);
+        const durationInSeconds = data.reduce(
+          (sum: number, call: { duration_seconds: number }) => sum + call.duration_seconds,
+          0
+        );
         const hours = Math.floor(durationInSeconds / 3600);
         const minutes = Math.floor((durationInSeconds % 3600) / 60);
         setTotalDuration(`${hours}h ${minutes}m`);

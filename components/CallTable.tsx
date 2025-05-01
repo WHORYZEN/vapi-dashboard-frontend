@@ -30,7 +30,13 @@ export default function CallTable({ calls }: { calls: Call[] }) {
   };
 
   const exportToPDF = () => {
+    if (typeof window === 'undefined') return; // 🛑 block during build
+  
+    const jsPDF = require('jspdf').default;
+    const autoTable = require('jspdf-autotable');
+  
     const doc = new jsPDF();
+  
     const tableData = calls.map(call => [
       call.from_number,
       `${Math.floor(call.duration_seconds / 60)}m ${call.duration_seconds % 60}s`,
