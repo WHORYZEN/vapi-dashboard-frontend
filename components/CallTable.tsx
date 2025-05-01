@@ -36,7 +36,12 @@ export default function CallTable({ calls }: { calls: Call[] }) {
       `${Math.floor(call.duration_seconds / 60)}m ${call.duration_seconds % 60}s`,
       new Date(call.timestamp).toLocaleString()
     ]);
-    doc.autoTable({ head: [['Number', 'Duration', 'Date/Time']], body: tableData });
+  
+    autoTable(doc, {
+      head: [['Number', 'Duration', 'Date/Time']],
+      body: tableData
+    });
+  
     doc.save('call_logs.pdf');
   };
 
