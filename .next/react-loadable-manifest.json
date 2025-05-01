@@ -1,4 +1,17 @@
 {
+  "../components/CallTable.tsx -> jspdf": {
+    "id": 1819,
+    "files": [
+      "static/chunks/e78312c5.6c8bc618ff0c7f59.js",
+      "static/chunks/412.45925310c1b57685.js"
+    ]
+  },
+  "../components/CallTable.tsx -> jspdf-autotable": {
+    "id": 5114,
+    "files": [
+      "static/chunks/114.0468e4e3fb870cf9.js"
+    ]
+  },
   "../node_modules/jspdf/dist/jspdf.es.min.js -> canvg": {
     "id": 4668,
     "files": [
