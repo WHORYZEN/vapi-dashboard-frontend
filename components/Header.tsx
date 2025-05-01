@@ -1,7 +1,11 @@
 import React from 'react';
 import { Bell, HelpCircle, Search } from 'lucide-react';
+interface HeaderProps {
+  searchTerm: string;
+  setSearchTerm: (value: string) => void;
+}
 
-export default function Header({ searchTerm, setSearchTerm }) {
+export default function Header({ searchTerm, setSearchTerm }: HeaderProps) {
   return (
     <div className="flex items-center justify-between mb-6 pb-2 border-b border-gray-200">
       {/* Logo and Brand */}
