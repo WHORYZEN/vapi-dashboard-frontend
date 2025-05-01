@@ -4,9 +4,21 @@ import { Table, TableHead, TableHeader, TableRow, TableCell, TableBody } from '@
 import { FileDown, FileText } from 'lucide-react';
 import Papa from 'papaparse';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 
-export default function CallTable({ calls }) {
+// explicitly extend jsPDF
+(autoTable as any)(jsPDF);
+
+type Call = {
+  id: string;
+  from_number: string;
+  duration_seconds: number;
+  timestamp: string;
+  transcript_url: string;
+  audio_url: string;
+};
+
+export default function CallTable({ calls }: { calls: Call[] }) {
   const exportToCSV = () => {
     const csv = Papa.unparse(calls);
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
